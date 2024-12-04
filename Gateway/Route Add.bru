@@ -1,27 +1,31 @@
 meta {
   name: Route Add
   type: http
-  seq: 2
+  seq: 3
 }
 
 post {
-  url: http://localhost:8080/api/routes
+  url: {{url}}/api/routes
   body: json
   auth: none
 }
 
 body:json {
   {
-    "id": "yeni-route",
+    "id": "yeni-route2",
     "predicates": [
       {
         "name": "Path",
         "args": {
-          "_genkey_0": "/yeni-servis/**"
+          "_genkey_0": "/yeni-servis2/**"
         }
       }
     ],
     "filters": [],
-    "uri": "http://yeni-servis-host:8080"
+    "uri": "http://yeni-servis2-host:8080"
   }
+}
+
+vars:post-response {
+  route_id: res.body.routeId
 }

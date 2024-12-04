@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/api/routes
+  url: {{url}}/api/routes
   body: none
   auth: none
+}
+
+vars:post-response {
+  route_id: res.body.routes[0].id
 }
