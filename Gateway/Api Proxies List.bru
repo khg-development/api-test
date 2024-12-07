@@ -1,0 +1,17 @@
+meta {
+  name: Api Proxies List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/api/v1/proxies
+  body: none
+  auth: none
+}
+
+vars:post-response {
+  api_proxy_id: res.body[0].id
+  api_proxy_uri: res.body[0].uri
+  api_proxy_name: res.body[0].name
+}

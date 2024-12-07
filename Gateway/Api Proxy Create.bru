@@ -1,0 +1,25 @@
+meta {
+  name: Api Proxy Create
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/api/v1/proxies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "test-proxy",
+    "uri": "http://localhost:8082",
+    "description": "Test proxy"
+  }
+}
+
+vars:post-response {
+  api_proxy_id: res.body.id
+  api_proxy_uri: res.body.uri
+  api_proxy_name: res.body.name
+}

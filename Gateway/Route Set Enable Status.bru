@@ -1,11 +1,11 @@
 meta {
   name: Route Set Enable Status
   type: http
-  seq: 5
+  seq: 9
 }
 
 post {
-  url: {{url}}/api/routes/{{route_id}}/status
+  url: {{url}}/api/v1/routes/{{route_id}}/status
   body: json
   auth: none
 }

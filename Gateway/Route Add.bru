@@ -1,31 +1,32 @@
 meta {
   name: Route Add
   type: http
-  seq: 3
+  seq: 7
 }
 
 post {
-  url: {{url}}/api/routes
+  url: {{url}}/api/v1/routes
   body: json
   auth: none
 }
 
 body:json {
   {
-    "id": "yeni-route2",
-    "predicates": [
-      {
-        "name": "Path",
-        "args": {
-          "_genkey_0": "/yeni-servis2/**"
-        }
-      }
-    ],
-    "filters": [],
-    "uri": "http://yeni-servis2-host:8080"
+    "routeId": "{{route_id}}",
+    "path": "/test/hello2",
+    "serviceName": "{{api_proxy_name}}",
+    "method": "GET"
   }
 }
 
 vars:post-response {
   route_id: res.body.routeId
+}
+
+script:pre-request {
+  const { faker } = require('@faker-js/faker');
+  
+  const route_id = faker.string.alpha(10);
+  
+  bru.setVar('route_id', route_id);
 }
