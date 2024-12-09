@@ -13,9 +13,16 @@ post {
 body:json {
   {
     "routeId": "{{route_id}}",
-    "path": "/test/hello2",
+    "path": "/test/hello",
     "serviceName": "{{api_proxy_name}}",
-    "method": "GET"
+    "method": "GET",
+    "headers": [
+      {
+        "key": "X-Custom-Header",
+        "value": "CustomValue",
+        "type": "ADD_REQUEST_HEADER"
+      }
+    ]
   }
 }
 
