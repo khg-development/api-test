@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{url}}/api/v1/routes
+  url: {{url}}/api/v1/routes/{{api_proxy_name}}
   body: json
   auth: none
 }
@@ -14,13 +14,17 @@ body:json {
   {
     "routeId": "{{route_id}}",
     "path": "/test/hello",
-    "serviceName": "{{api_proxy_name}}",
     "method": "GET",
     "headers": [
       {
-        "key": "X-Custom-Header",
-        "value": "CustomValue",
+        "key": "X-Custom-Header-1",
+        "value": "Test-Val-1",
         "type": "ADD_REQUEST_HEADER"
+      },
+      {
+        "key": "X-Custom-Header-2",
+        "value": "Test-Val-2",
+        "type": "ADD_REQUEST_HEADER_IF_NOT_PRESENT"
       }
     ]
   }

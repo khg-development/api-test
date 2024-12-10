@@ -1,0 +1,15 @@
+meta {
+  name: Demo Test Hello
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/test/hello
+  body: none
+  auth: none
+}
+
+headers {
+  X-Custom-Header-1: from_bruno
+}
