@@ -13,8 +13,9 @@ post {
 body:json {
   {
     "routeId": "{{route_id}}",
-    "path": "/test/hello",
+    "path": "/test/hello2",
     "method": "GET",
+    "matchTrailingSlash": false,
     "headers": [
       {
         "key": "X-Custom-Header-1",
@@ -25,6 +26,36 @@ body:json {
         "key": "X-Custom-Header-2",
         "value": "Test-Val-2",
         "type": "ADD_REQUEST_HEADER_IF_NOT_PRESENT"
+      }
+    ],
+    "activationTime": "2024-12-11T13:16:00+03:00",
+    "expirationTime": "2024-12-31T23:59:59+03:00",
+    "cookiePredications": [
+      {
+        "name": "test",
+        "regexp": "\\w+"
+      }
+    ],
+    "headerPredications": [
+      {
+        "name": "test",
+        "regexp": "\\w+"
+      }
+    ],
+    "hostPredications": [
+      {
+        "pattern": "*.khg.com.tr"
+      }
+    ],
+    "queryPredications": [
+      {
+        "param": "q",
+        "regexp": "k."
+      }
+    ],
+    "remoteAddrPredications": [
+      {
+        "source": "192.168.1.1/24"
       }
     ]
   }
@@ -40,4 +71,42 @@ script:pre-request {
   const route_id = faker.string.alpha(10);
   
   bru.setVar('route_id', route_id);
+}
+
+docs {
+  Tüm alanların dolu olan örnek istek:
+  {
+    "routeId": "{{route_id}}",
+    "path": "/test/hello",
+    "method": "GET",
+    "headers": [
+      {
+        "key": "X-Custom-Header-1",
+        "value": "Test-Val-1",
+        "type": "ADD_REQUEST_HEADER"
+      },
+      {
+        "key": "X-Custom-Header-2",
+        "value": "Test-Val-2",
+        "type": "ADD_REQUEST_HEADER_IF_NOT_PRESENT"
+      }
+    ],
+    "activationTime": "2024-12-11T13:16:00+03:00",
+    "expirationTime": "2024-12-31T23:59:59+03:00",
+    "cookiePredications": [
+      {
+        "name": "test",
+        "regexp": "\\w+"
+      }
+    ],
+    "headerPredications": [
+      {
+        "name": "test",
+        "regexp": "\\w+"
+      }
+    ],
+    "hostPredications": [
+      {"pattern": "*.khg.com.tr"}
+    ]
+  }
 }

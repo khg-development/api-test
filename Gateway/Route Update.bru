@@ -1,0 +1,31 @@
+meta {
+  name: Route Update
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{url}}/api/v1/routes/{{api_proxy_name}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "routeId": "{{route_id}}",
+    "path": "/test/hello",
+    "method": "GET",
+    "hostPredications": [
+      {
+        "pattern": "*.epias.com.tr"
+      },
+      {
+        "pattern": "*.khg.com.tr"
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  route_id: res.body.routeId
+}
